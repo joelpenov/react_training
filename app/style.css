@@ -1,0 +1,13 @@
+*{
+	background: #ccc;
+	color: #31333a;
+}
+
+.mainContainer{
+	margin: auto 20%;
+}
+
+.mainContainer img {
+	height: 250px;
+	width: auto;
+}
