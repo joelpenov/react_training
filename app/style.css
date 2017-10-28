@@ -23,3 +23,23 @@ ul > li {
 	font-family: 'Fjalla One', sans-serif;
 	justify-content: center;
 }
+
+.popular-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.popular-item{
+	margin: 20px;
+	text-align: center;
+}
+
+.space-list-items{
+	margin-bottom: 7px;
+}
+
+.avatar{
+	width: 150px;
+	border-radius: 50%;
+}
