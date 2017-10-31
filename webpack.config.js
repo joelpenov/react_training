@@ -5,7 +5,11 @@ module.exports = {
 	entry: "./app/index.js",
 	output: {
 		path: path.resolve(__dirname, "build"),
-		filename: "build_result.js"
+		filename: "build_result.js",
+		publicPath: "/"
+	},
+	devServer: {
+		historyApiFallback: true
 	},
 	module:{
 		rules:[

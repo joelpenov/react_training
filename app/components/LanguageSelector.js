@@ -1,7 +1,7 @@
 var React = require("react");
 var Api = require("../services/Api");
 
-var languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "C#", "CSS"];
+var languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "PHP", "CSS"];
 
 function numericFormat(number){
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
