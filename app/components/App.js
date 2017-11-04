@@ -8,6 +8,7 @@ var NavBar = require("./NavBar");
 var Home = require("./Home");
 var Battle = require("./Battle");
 var LanguageSelector = require("./LanguageSelector");
+var Result = require("./Result");
 
 class App extends React.Component{
 	render(){
@@ -18,7 +19,8 @@ class App extends React.Component{
 						<Switch>
 							<Route exact path="/" component={Home} />						
 							<Route path="/popular" component={LanguageSelector} />
-							<Route path="/battle" component={Battle} />
+							<Route exact path="/battle" component={Battle} />
+							<Route path="/battle/results" component={Result} />
 							<Route render={
 								function(){
 									return (<h1>Not found!</h1>)

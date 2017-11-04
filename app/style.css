@@ -23,7 +23,6 @@ ul > li {
 .filtersContainer{
 	display: flex;
 	justify-content: center;
-	    border: solid;
 }
 
 .nav-bar{
@@ -72,6 +71,10 @@ ul > li {
   width: 175px;
 }
 
+.button:disabled{
+	background-color: #ccc;
+	color: black;
+}
 .home-container{
 	display: flex;
     flex-direction: column;
@@ -109,4 +112,11 @@ ul > li {
 
 .header{
 	margin-bottom: 10px;
+}
+
+.reset-anchor{
+	text-decoration: none;
+	color: #white;
+	font-weight: bold;
+	font-size: 0.55em;
 }
