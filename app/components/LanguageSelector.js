@@ -22,7 +22,7 @@ function RepositoriesList (props){
 														alt={"Avatar for " + repository.owner.login} />
 														
 												</li>
-												<li><a href={repository.html_url}>{repository.name}</a></li>
+												<li><a target="_blank" href={repository.html_url}>{repository.name}</a></li>
 												<li>@{repository.owner.login}</li>
 												<li>{numericFormat(repository.stargazers_count)} stars</li>
 											</ul>

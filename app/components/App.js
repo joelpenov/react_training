@@ -9,9 +9,16 @@ var Home = require("./Home");
 var Battle = require("./Battle");
 var LanguageSelector = require("./LanguageSelector");
 var Result = require("./Result");
+var BattleApi = require("../services/BattleApi");
 
 class App extends React.Component{
+
 	render(){
+		BattleApi.getBattleResult(["joelrpa", "joel"])
+		.then(function(response){
+			console.log(response);
+		});
+		
 		return (
 				<BrowserRouter>
 					<div className="container"> 
