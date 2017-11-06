@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet');
 
 *{
-	background: #ccc;
 	color: #31333a;
 	font-family: 'Fjalla One', sans-serif;
 }
@@ -119,4 +118,13 @@ ul > li {
 	color: #white;
 	font-weight: bold;
 	font-size: 0.55em;
+}
+
+.row input {
+	border: red;
+	border: 1px solid black;
+}
+
+.result-detail{
+	font-size: 15px;
 }

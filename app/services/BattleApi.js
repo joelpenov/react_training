@@ -1,7 +1,7 @@
 var Settings = require("../config/Settings");
 var Axios = require("axios");
 
-var baseGithubUrl = "https://api.github.com"
+var baseGithubUrl = "https:\/\/api.github.com";
 var githubParams = `?client_id=${Settings.GitHubTokenKey}&client_secret=${Settings.GitHubTokenSecret}`;
 
 var getUserProfile = function(username){
@@ -63,6 +63,9 @@ var BattleApi = {
 			});
 
 			return sortUsersByScore(userDataCollection);
+		}).catch(function(errorMessage){
+			console.log(errorMessage.message);
+			return null;
 		});
 	}
 }

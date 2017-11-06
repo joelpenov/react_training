@@ -2,6 +2,8 @@ var React = require("react");
 var PropTypes = require("prop-types");
 var Link = require("react-router-dom").Link;
 
+var Avatar = require("./Avatar");
+
 class PlayerInput extends React.Component{
 	
 	constructor(props) {
@@ -85,38 +87,6 @@ PlayerInputUI.propTypes={
 	handleSubmit: PropTypes.func.isRequired
 }
 
-class Avatar extends React.Component{
-	constructor(props) {
-		super(props);
-		this.handleReset = this.handleReset.bind(this);
-	}
-
-	handleReset(){
-		this.props.handleReset();
-	}
-
-	render() {
-		return (
-				<div className="column">
-
-					<img className="avatar" src={this.props.avatarUrl}/>
-					<p>@{this.props.username}</p>
-					<a className="reset-anchor" 
-					href="#"
-					onClick={this.handleReset}
-					>
-						Reset
-					</a>
-				</div>
-			)
-	}
-}
-
-Avatar.propTypes = {
-	handleReset: PropTypes.func.isRequired,
-	avatarUrl: PropTypes.string.isRequired
-}
-
 class Battle extends React.Component{
 	constructor(props) {
 		super(props);
@@ -169,9 +139,15 @@ class Battle extends React.Component{
 					{this.state.playerOneName && 
 						<Avatar
 							avatarUrl={this.state.playerOneImage} 
-							username={this.state.playerOneName}
-							handleReset={this.handleReset.bind(null, playerNumberOne)}
-						/>
+							username={this.state.playerOneName}							
+						>							
+							<a className="reset-anchor" 
+								href="#"
+								onClick={this.handleReset.bind(null, playerNumberOne)}
+								>
+								Reset
+							</a>
+						</Avatar>
 					}
 					{!this.state.playerTwoName && 
 						<PlayerInputUI
@@ -183,8 +159,14 @@ class Battle extends React.Component{
 						<Avatar
 							avatarUrl={this.state.playerTwoImage} 
 							username={this.state.playerTwoName}
-							handleReset={this.handleReset.bind(null, playerNumberTwo)}							
-						/>
+						>							
+							<a className="reset-anchor" 
+								href="#"
+								onClick={this.handleReset.bind(null, playerNumberTwo)}
+								>
+								Reset
+							</a>
+						</Avatar>
 					}
 					
 				</div>
