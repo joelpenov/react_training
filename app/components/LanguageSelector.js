@@ -1,6 +1,8 @@
 var React = require("react");
 var Api = require("../services/Api");
 
+var Loading = require("./Loading");
+
 var languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "PHP", "CSS"];
 
 function numericFormat(number){
@@ -89,7 +91,7 @@ class LanguageSelector extends React.Component{
 						}, this)}
 					</ul>
 
-				{this.state.repositories !== null ? <RepositoriesList repositories={this.state.repositories} /> : <h1>Loading...</h1>}
+				{this.state.repositories !== null ? <RepositoriesList repositories={this.state.repositories} /> : <Loading/>}
 
 				</div>
 			)

@@ -4,6 +4,7 @@ var QueryString = require("query-string");
 var BattleApi = require("../services/BattleApi");
 var ResultDetail = require("./ResultDetail");
 var Avatar = require("./Avatar");
+var Loading = require("./Loading");
 
 class Result extends React.Component{
 	constructor(props){
@@ -50,9 +51,7 @@ class Result extends React.Component{
 					<div className="row">
 						{ isLoading === true &&
 									(
-										<div>
-											Loading...
-										</div>
+										<Loading/>
 									)
 						}
 						{ error &&
