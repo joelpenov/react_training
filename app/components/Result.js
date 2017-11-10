@@ -1,95 +1,100 @@
-var React = require("react");
-var QueryString = require("query-string");
+import React from "react"
+import QueryString from "query-string"
 
-var BattleApi = require("../services/BattleApi");
-var ResultDetail = require("./ResultDetail");
-var Avatar = require("./Avatar");
-var Loading = require("./Loading");
+import BattleApi from "../services/BattleApi"
+import ResultDetail from "./ResultDetail"
+import Avatar from "./Avatar"
+import Loading from "./Loading"
 
-class Result extends React.Component{
-	constructor(props){
+class Result extends React.Component {
+	constructor(props) {
 		super(props);
 
 		this.state = {
 			error: "",
 			isLoading: true,
-			winner:null,
-			loser:null
+			winner: null,
+			loser: null
 		}
 	}
 
-	componentDidMount(){
-		var queryStringObject = QueryString.parse(this.props.location.search);
-		BattleApi.getBattleResult([queryStringObject.playerOneName, queryStringObject.playerTwoName])
-		.then(function(response){
+	componentDidMount() {
+		const {playerOneName, playerTwoName} = QueryString.parse(this.props.location.search);
+		BattleApi.getBattleResult([playerOneName, playerTwoName])
+			.then((response) => {
 
 				var newState = {
 					isLoading: false
 				};
 
-				if(response === null){
+				if (response === null) {
 					newState.error = "There were an error. Make sure both users exist on GitHub.";
-				}else{
-					newState.winner = response[0],
-					newState.loser = response[1]
+				} else {
+					const [winner, loser] = response;
+					newState.winner = winner,
+						newState.loser = loser
 				}
 
-			this.setState(function(){
-				return newState;
+				this.setState(() => {
+					return newState;
+				});
 			});
-		}.bind(this));
 	}
 
-	render(){		
+	render() {
 
-			var isLoading = this.state.isLoading;
-			var error = this.state.error;
-			var winner = this.state.winner;
-			var loser = this.state.loser;
+		const {
+			isLoading,
+			error,
+			winner,
+			loser
+		} = this.state;
 
-			return (
-					<div className="row">
-						{ isLoading === true &&
-									(
-										<Loading/>
-									)
-						}
-						{ error &&
-									(
-										<div className="error">
-											{this.state.error}
-										</div>
-									)
-						}
-						{ (winner !== null ) &&
-									(
-										<Avatar
-											avatarUrl={winner.profile.avatar_url}
-											username={winner.profile.login}
-											label="Winner"
-										 >
-											<ResultDetail profile={winner.profile} />
-										</Avatar>
-									)
-						 }
-						 {
-						 	(loser !== null) &&
-									(
-										<Avatar
-											avatarUrl={loser.profile.avatar_url}
-											username={loser.profile.login}
-											label="Loser"
-										 >
-											<ResultDetail profile={loser.profile} />
-										</Avatar>
-									)
-						 }
-
-					</div>
-				
+		return ( <div className = "row"> {
+				isLoading === true &&
+				( <Loading /> )
+			} {
+				error &&
+					( 
+						<div className="error"> 
+							{ this.state.error } 
+						</div >
+					)
+			} 
+			{
+				(winner !== null) &&
+				( <Avatar avatarUrl = {
+						winner.profile.avatar_url
+					}
+					username = {
+						winner.profile.login
+					}
+					label = "Winner" >
+					<ResultDetail profile = {
+						winner.profile
+					}
+					/> </Avatar>
 				)
+			} {
+				(loser !== null) &&
+				( <Avatar avatarUrl = {
+						loser.profile.avatar_url
+					}
+					username = {
+						loser.profile.login
+					}
+					label = "Loser">
+					<ResultDetail profile = {
+						loser.profile
+					}/> </Avatar>
+				)
+			}
+
+			</div>
+
+		)
 	}
 }
 
 
-module.exports = Result;
+export default Result;

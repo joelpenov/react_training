@@ -1,20 +1,16 @@
-var React = require("react");
-var Api = require("../services/Api");
+import React from "react"
+import Api from "../services/Api"
 
-var Loading = require("./Loading");
+import Loading from "./Loading"
+import NumericFormat from "../formaters/NumericFormat"
 
 var languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "PHP", "CSS"];
-
-function numericFormat(number){
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 function RepositoriesList (props){
 		return (
 				<ul className="popular-list">
 					{ 
-						props.repositories.map(function(repository, index){
-						
+						props.repositories.map((repository, index) => {
 								return (
 										<li key={repository.name} className="popular-item">
 											<div className="popular-rank">#{index + 1}</div>
@@ -26,16 +22,14 @@ function RepositoriesList (props){
 												</li>
 												<li><a target="_blank" href={repository.html_url}>{repository.name}</a></li>
 												<li>@{repository.owner.login}</li>
-												<li>{numericFormat(repository.stargazers_count)} stars</li>
+												<li>{NumericFormat.SeparateByCommas(repository.stargazers_count)} stars</li>
 											</ul>
 										</li>
 									)
-						
 						})
 					}
 					
-				</ul>
-			)			
+				</ul>)
 	}
 
 
@@ -54,20 +48,15 @@ class LanguageSelector extends React.Component{
 	}
 
 	setLanguage(language){
-		var self = this;
-		self.setState(function(){
-			return  {
-				selectedLanguage: language,
-				repositories: null
-			}
-		});
+		this.setState(() =>
+			 	({
+					selectedLanguage: language,
+					repositories: null
+				})
+		);
 
-		Api.getRepositories(language).then(function(respositories){
-			self.setState(function(){
-				return  {
-					repositories: respositories
-				}
-			})
+		Api.getRepositories(language).then((repositories) => {
+			this.setState(() => ({ repositories	}))
 		})
 	}
 
@@ -79,23 +68,31 @@ class LanguageSelector extends React.Component{
 		return (
 				<div>
 					<ul className="filtersContainer">
-						{languageFilters.map(function(filter){
+						{languageFilters.map((filter) => {
 							return (
 									<li 
 									onClick= {this.setLanguage.bind(null, filter)}
-									style= {filter === this.state.selectedLanguage ? {color: "#d0021b" } : null}
+									style= {
+											filter === this.state.selectedLanguage ? 
+											{color: "#d0021b" } : 
+											null
+										}
 									key={filter}>
 										{filter}
 									</li>
 								)
-						}, this)}
+						})}
 					</ul>
 
-				{this.state.repositories !== null ? <RepositoriesList repositories={this.state.repositories} /> : <Loading/>}
+				{ 
+					this.state.repositories !== null ? 
+					<RepositoriesList repositories={this.state.repositories} /> : 
+					<Loading/>
+				}
 
 				</div>
 			)
 	}
 }
 
-module.exports = LanguageSelector;
+export default LanguageSelector;

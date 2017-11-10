@@ -1,14 +1,11 @@
-var React = require("react");
-var ReactRouter = require("react-router-dom");
-var BrowserRouter = ReactRouter.BrowserRouter;
-var Route = ReactRouter.Route;
-var Switch = ReactRouter.Switch;
+import React from "react"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 
-var NavBar = require("./NavBar");
-var Home = require("./Home");
-var Battle = require("./Battle");
-var LanguageSelector = require("./LanguageSelector");
-var Result = require("./Result");
+import NavBar from "./NavBar"
+import Home from "./Home"
+import Battle from "./Battle"
+import LanguageSelector from "./LanguageSelector"
+import Result from "./Result"
 
 class App extends React.Component{
 	render(){
@@ -33,4 +30,4 @@ class App extends React.Component{
 	}
 }
 
-module.exports = App;
+export default App;

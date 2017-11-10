@@ -1,5 +1,5 @@
-var React = require("react");
-var PropTypes = require("prop-types");
+import React from "react"
+import PropTypes from "prop-types"
 
 class Avatar extends React.Component{
 	render() {
@@ -19,4 +19,4 @@ Avatar.propTypes = {
 	avatarUrl: PropTypes.string.isRequired
 }
 
-module.exports = Avatar;
+export default Avatar;

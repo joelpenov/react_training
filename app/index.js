@@ -1,8 +1,8 @@
-var React = require("react");
-var ReactDom = require("react-dom");
-var PropTypes = require("prop-types");
-var App = require("./components/App");
+import React from "react"
+import ReactDom from "react-dom"
+import PropTypes from "prop-types"
+import App from "./components/App"
 
-require("./style.css");
+import "./style.css"
 
 ReactDom.render(<App/>, document.getElementById("app"));

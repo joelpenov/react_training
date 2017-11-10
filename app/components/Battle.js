@@ -1,8 +1,8 @@
-var React = require("react");
-var PropTypes = require("prop-types");
-var Link = require("react-router-dom").Link;
+import React from "react"
+import PropTypes from "prop-types"
+import {Link} from "react-router-dom"
 
-var Avatar = require("./Avatar");
+import Avatar from "./Avatar"
 
 class PlayerInput extends React.Component{
 	
@@ -28,15 +28,11 @@ class PlayerInput extends React.Component{
 
 	handleChange(event){
 		var usernameValue = event.target.value;
-		this.setState(function(){
-			return {
-				username: usernameValue
-			}
-		});
+		this.setState(() => ({username: usernameValue}));
 	}
 
 	render() {
-		var elementId = "username" + this.props.playerNumber;
+		var elementId =`username${this.props.playerNumber}`;
 		return (
 				<form className="column" onSubmit={this.handleSubmit}>
 					<label className="header" htmlFor={elementId}>
@@ -71,7 +67,6 @@ PlayerInput.propTypes = {
 
 class PlayerInputUI extends React.Component{
 	render() {
-		var playerName = "player" + this.props.playerNumber;
 		return (
 			<PlayerInput
 			  playerNumber= {this.props.playerNumber}
@@ -104,16 +99,14 @@ class Battle extends React.Component{
 	}
 
 	setNewState(username, avatarUrl, playerId){
-		this.setState(function(){
-			var newState = {};
-			newState["player" + playerId + "Name"] = username;
-			newState["player" + playerId + "Image"] = avatarUrl;
-			return newState;
-		});
+		this.setState(() =>({
+			["player" + playerId + "Name"]: username,
+			["player" + playerId + "Image"]: avatarUrl
+		}));
 	}
 
 	handleSubmit(playerId, username){
-		var avatarUrl="https:\//github.com/" + username + ".png?size=200";
+		const avatarUrl=`https:\//github.com/${username}.png?size=200`;
 		this.setNewState(username, avatarUrl, playerId);		
 	}
 
@@ -122,10 +115,9 @@ class Battle extends React.Component{
 	}
 
 	render() {
-		var match = this.props.match;
-
-		var playerNumberOne = "One";
-		var playerNumberTwo = "Two";
+		const {match} = this.props;
+		const playerNumberOne = "One";
+		const playerNumberTwo = "Two";
 		return (
 				<div>
 					<div className="row">
@@ -193,4 +185,4 @@ class Battle extends React.Component{
 	}	
 }
 
-module.exports = Battle;
+export default Battle;
