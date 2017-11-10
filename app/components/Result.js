@@ -5,20 +5,24 @@ import BattleApi from "../services/BattleApi"
 import ResultDetail from "./ResultDetail"
 import Avatar from "./Avatar"
 import Loading from "./Loading"
+import PropTypes from "prop-types"
 
 class Result extends React.Component {
-	constructor(props) {
-		super(props);
 
-		this.state = {
+		static propTypes={
+			error: PropTypes.string,
+			isLoading: PropTypes.bool,
+			winner: PropTypes.object, 
+			loser: PropTypes.object 
+		}
+		state = {
 			error: "",
 			isLoading: true,
 			winner: null,
 			loser: null
 		}
-	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		const {playerOneName, playerTwoName} = QueryString.parse(this.props.location.search);
 		BattleApi.getBattleResult([playerOneName, playerTwoName])
 			.then((response) => {
@@ -50,32 +54,24 @@ class Result extends React.Component {
 			loser
 		} = this.state;
 
-		return ( <div className = "row"> {
+		return ( <div className = "row"> 
+			{
 				isLoading === true &&
-				( <Loading /> )
-			} {
-				error &&
-					( 
-						<div className="error"> 
-							{ this.state.error } 
-						</div >
-					)
+				( <Loading/> )
+			} 
+			{
+				error && (<div className="error"> {this.state.error} </div>)
 			} 
 			{
 				(winner !== null) &&
-				( <Avatar avatarUrl = {
-						winner.profile.avatar_url
-					}
-					username = {
-						winner.profile.login
-					}
+				( <Avatar avatarUrl = {winner.profile.avatar_url}
+					username = {winner.profile.login}
 					label = "Winner" >
-					<ResultDetail profile = {
-						winner.profile
-					}
-					/> </Avatar>
+					<ResultDetail profile = {winner.profile}/> 
+				 </Avatar>
 				)
-			} {
+			} 
+			{
 				(loser !== null) &&
 				( <Avatar avatarUrl = {
 						loser.profile.avatar_url

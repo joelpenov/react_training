@@ -5,20 +5,18 @@ import {Link} from "react-router-dom"
 import Avatar from "./Avatar"
 
 class PlayerInput extends React.Component{
-	
-	constructor(props) {
-		super(props);
 
-		this.state = {
+	static propTypes = {
+			label: PropTypes.string.isRequired,
+			playerNumber: PropTypes.string.isRequired,
+			onSubmit: PropTypes.func.isRequired
+		}
+
+		state = {
 			username: ""
 		};
 
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-	handleSubmit(event){
-
+	handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.onSubmit(
 			this.props.playerNumber, 
@@ -26,7 +24,7 @@ class PlayerInput extends React.Component{
 			);
 	}
 
-	handleChange(event){
+	handleChange = (event) => {
 		var usernameValue = event.target.value;
 		this.setState(() => ({username: usernameValue}));
 	}
@@ -59,13 +57,11 @@ class PlayerInput extends React.Component{
 	}
 }
 
-PlayerInput.propTypes = {
-	label: PropTypes.string.isRequired,
-	playerNumber: PropTypes.string.isRequired,
-	onSubmit: PropTypes.func.isRequired
-}
-
 class PlayerInputUI extends React.Component{
+	static propTypes={
+			playerNumber: PropTypes.string.isRequired,
+			handleSubmit: PropTypes.func.isRequired
+		}
 	render() {
 		return (
 			<PlayerInput
@@ -77,40 +73,28 @@ class PlayerInputUI extends React.Component{
 	}
 }
 
-PlayerInputUI.propTypes={
-	playerNumber: PropTypes.string.isRequired,
-	handleSubmit: PropTypes.func.isRequired
-}
-
 class Battle extends React.Component{
-	constructor(props) {
-		super(props);
-		
-		this.state = {
-			playerOneName: "",
-			playerTwoName: "",
-			playerOneImage: null,
-			playerTwoImage: null
-		};
 
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.setNewState = this.setNewState.bind(this);
-		this.handleReset = this.handleReset.bind(this);
+	state = {
+		playerOneName: "",
+		playerTwoName: "",
+		playerOneImage: null,
+		playerTwoImage: null
 	}
 
-	setNewState(username, avatarUrl, playerId){
+	setNewState = (username, avatarUrl, playerId) => {
 		this.setState(() =>({
 			["player" + playerId + "Name"]: username,
 			["player" + playerId + "Image"]: avatarUrl
 		}));
 	}
 
-	handleSubmit(playerId, username){
+	handleSubmit = (playerId, username) => {
 		const avatarUrl=`https:\//github.com/${username}.png?size=200`;
 		this.setNewState(username, avatarUrl, playerId);		
 	}
 
-	handleReset(playerId){
+	handleReset = (playerId) => {
 		this.setNewState("", null, playerId);
 	}
 

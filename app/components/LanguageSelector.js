@@ -36,18 +36,12 @@ function RepositoriesList (props){
 
 class LanguageSelector extends React.Component{
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
+		state = {
 			selectedLanguage: languageFilters[0],
 			repositories: null
 		};
 
-		this.setLanguage = this.setLanguage.bind(this);
-	}
-
-	setLanguage(language){
+	setLanguage = (language) => {
 		this.setState(() =>
 			 	({
 					selectedLanguage: language,
@@ -60,7 +54,7 @@ class LanguageSelector extends React.Component{
 		})
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		this.setLanguage(this.state.selectedLanguage);
 	}
 

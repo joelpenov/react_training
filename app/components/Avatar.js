@@ -2,6 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 
 class Avatar extends React.Component{
+
+	static propTypes = {
+				username: PropTypes.string.isRequired,
+				avatarUrl: PropTypes.string.isRequired
+			}
+
 	render() {
 		return (
 				<div className="column">
@@ -12,11 +18,6 @@ class Avatar extends React.Component{
 				</div>
 			)
 	}
-}
-
-Avatar.propTypes = {
-	username: PropTypes.string.isRequired,
-	avatarUrl: PropTypes.string.isRequired
 }
 
 export default Avatar;

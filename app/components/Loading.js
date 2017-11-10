@@ -3,16 +3,22 @@ import PropTypes from "prop-types"
 
 class Loading extends React.Component{
 
-	constructor(props){
-		super(props);
+	state = {
+		label: this.props.text,
+		speed: 0
+	};
 
-		this.state = {
-			label: this.props.text,
-			speed: 0
-		};
+	static propTypes = {
+		speed: PropTypes.number.isRequired,
+		text: PropTypes.string.isRequired
 	}
 
-	componentDidMount(){
+	static defaultProps = {
+		text: "Loading",
+		speed: 300
+	}
+
+	componentDidMount = () => {
 		const expectedFinalText = `${this.props.text}...`;
 		this.interval = window.setInterval(() => {
 
@@ -24,7 +30,7 @@ class Loading extends React.Component{
 		}, this.props.speed);
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount = () => {
 		window.clearInterval(this.interval);
 	}
 
@@ -35,16 +41,6 @@ class Loading extends React.Component{
 				</p>
 			)		
 	}
-}
-
-Loading.propTypes = {
-	speed: PropTypes.number.isRequired,
-	text: PropTypes.string.isRequired
-}
-
-Loading.defaultProps = {
-	text: "Loading",
-	speed: 300
 }
 
 export default Loading;
