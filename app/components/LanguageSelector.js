@@ -4,7 +4,7 @@ import Api from "../services/Api"
 import Loading from "./Loading"
 import NumericFormat from "../formaters/NumericFormat"
 
-var languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "PHP", "CSS"];
+const languageFilters = ["All", "Ruby", "Python", "Java", "JavaScript", "PHP", "CSS"];
 
 function RepositoriesList (props){
 		return (
@@ -41,7 +41,7 @@ class LanguageSelector extends React.Component{
 			repositories: null
 		};
 
-	setLanguage = (language) => {
+	 setLanguage = async (language) => {
 		this.setState(() =>
 			 	({
 					selectedLanguage: language,
@@ -49,9 +49,8 @@ class LanguageSelector extends React.Component{
 				})
 		);
 
-		Api.getRepositories(language).then((repositories) => {
-			this.setState(() => ({ repositories	}))
-		})
+		const repositories = await Api.getRepositories(language);
+		this.setState(() => ({ repositories	}));
 	}
 
 	componentDidMount = () => {

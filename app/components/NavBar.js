@@ -1,7 +1,7 @@
 import React from "react"
 import {NavLink} from "react-router-dom"
 
-var menuItems = [{text: "Battle",path: "/battle"}, 
+const menuItems = [{text: "Battle",path: "/battle"}, 
 				 {text: "Popular",path: "/popular"}
 				 ]
 

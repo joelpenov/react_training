@@ -27,7 +27,7 @@ class Result extends React.Component {
 		BattleApi.getBattleResult([playerOneName, playerTwoName])
 			.then((response) => {
 
-				var newState = {
+				const newState = {
 					isLoading: false
 				};
 

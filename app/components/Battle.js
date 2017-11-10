@@ -25,12 +25,12 @@ class PlayerInput extends React.Component{
 	}
 
 	handleChange = (event) => {
-		var usernameValue = event.target.value;
+		const usernameValue = event.target.value;
 		this.setState(() => ({username: usernameValue}));
 	}
 
 	render() {
-		var elementId =`username${this.props.playerNumber}`;
+		const elementId =`username${this.props.playerNumber}`;
 		return (
 				<form className="column" onSubmit={this.handleSubmit}>
 					<label className="header" htmlFor={elementId}>
@@ -67,8 +67,7 @@ class PlayerInputUI extends React.Component{
 			<PlayerInput
 			  playerNumber= {this.props.playerNumber}
 			  onSubmit= {this.props.handleSubmit}
-			  label= {"Player " + this.props.playerNumber}
-			  />
+			  label= {"Player " + this.props.playerNumber}/>
 		)
 	}
 }
